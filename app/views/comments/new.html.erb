@@ -1,0 +1,7 @@
+<h2>New comment</h2>
+<%= form_with(model: [@ticket, @comment]) do |form| %>
+  <div class="field">
+    <%= form.text_field :content %>
+    <%= form.submit 'Post' %>
+  </div>
+<% end %>
