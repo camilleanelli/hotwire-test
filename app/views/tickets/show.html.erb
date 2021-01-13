@@ -1,9 +1,10 @@
+<%= turbo_stream_from @ticket %>
+
 <%= turbo_frame_tag 'ticket' do %>
-  <h2><%= @ticket.title %></h2>
-  <p><%= @ticket.content %></p>
+  <%= render @ticket %>
 
   <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
-  <%= link_to 'Back', tickets_path, 'data-turbo-frame': :_top %>
+  <%= link_to 'Back', tickets_path %>
 <% end %>
 
 <div id="comments">
@@ -11,4 +12,7 @@
   <%= render @ticket.comments %>
 </div>
 
-<%= link_to 'new comment', new_ticket_comment_path(@ticket) %>
+<!-- <%= link_to 'new comment', new_ticket_comment_path(@ticket) %> -->
+<!-- afficher le formulaire pour ajouter un commentaire : on passe le lien vers le form de new comment et on ajoute le meme tag sur la page du form-->
+
+<%= turbo_frame_tag 'new_comment', src: new_ticket_comment_path(@ticket), target: :_top %>

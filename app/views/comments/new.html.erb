@@ -1,7 +1,9 @@
-<h2>New comment</h2>
-<%= form_with(model: [@ticket, @comment]) do |form| %>
-  <div class="field">
-    <%= form.text_field :content %>
-    <%= form.submit 'Post' %>
-  </div>
+<%= turbo_frame_tag 'new_comment' do %>
+  <h2>New comment</h2>
+  <%= form_with model: [@ticket, @comment], data: { controller: 'reset_form', action: 'turbo:submit-end->reset_form#reset' } do |form| %>
+    <div class="field">
+      <%= form.text_field :content %>
+      <%= form.submit 'Post', 'data-reset_form-target': 'button' %>
+    </div>
+  <% end %>
 <% end %>

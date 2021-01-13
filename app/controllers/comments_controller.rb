@@ -6,9 +6,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @ticket.comments.create!(params_comment)
+    @comment = @ticket.comments.new(params_comment)
     respond_to do |format|
-      format.html { redirect_to ticket_path(@ticket) }
+      if @comment.save
+        format.turbo_stream
+        # va rechercher un fichier turbo_stream.erb
+        format.html { redirect_to ticket_path(@ticket) }
+      end
     end
   end
 
