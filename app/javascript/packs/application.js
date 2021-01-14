@@ -18,3 +18,5 @@ require("@rails/actiontext")
 // const imagePath = (name) => images(name, true)
 
 console.log('toto');
+
+import "controllers"

@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     @comment = @ticket.comments.new(params_comment)
     respond_to do |format|
       if @comment.save
-        format.turbo_stream
+        # format.turbo_stream
         # va rechercher un fichier turbo_stream.erb
         format.html { redirect_to ticket_path(@ticket) }
       end
