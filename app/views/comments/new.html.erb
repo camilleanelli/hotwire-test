@@ -1,9 +1,21 @@
 <%= turbo_frame_tag 'new_comment' do %>
-  <h2>New comment</h2>
-  <%= form_with model: [@ticket, @comment], data: { controller: 'reset_form', action: 'turbo:submit-end->reset_form#connect' } do |form| %>
-    <div class="field">
-      <%= form.text_field :content %>
-      <%= form.submit 'Post', 'data-reset_form-target': 'button' %>
-    </div>
-  <% end %>
+  <div data-controller='resetform' data-action='submit->resetform#reset'>
+
+    <h2 >New comment</h2>
+    <%= form_with model: [@ticket, @comment] do |form| %>
+      <div class="field">
+        <%= form.text_field :content %>
+        <%= form.submit 'Post', 'data-resetform-target': 'button' %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- <div data-controller='resetform'>
+  <button data-action='click->resetform#reset' data-target='resetform.button'>
+    ok
+  </button>
+</div> -->
 <% end %>
+
+
+
